@@ -32,7 +32,7 @@ app.use(hpp());
 // Rate Limiting
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins
-  max: 5,
+  max: 100,
 });
 app.use(limiter);
 
@@ -62,10 +62,15 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      titel: "Library API",
+      title: "Library API",
       version: "1.0.0",
       description: "A simple Express VacQ API",
     },
+    servers: [
+      {
+        url: "http://localhost:5000/api/v1",
+      },
+    ],
   },
   apis: ["./routes/*.js"],
 };
